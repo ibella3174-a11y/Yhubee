@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FortuneX – Automated Time Earning & Plans</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #82180c;
+      color: #fff;
+      padding: 0 20px 30px;
+      overflow-x: hidden;
+    }
+
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .content {
+      text-align: center;
+      padding: 20px 15px 40px;
+    }
+
+    .content h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffce00;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .content p {
+      color: #f3f3f3;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .image-join {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .image-join img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn-primary {
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 14px 32px;
+      width: 200px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffae00, #ff6b00);
+      color: #fff;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #ffb733, #ff8100);
+      transform: scale(1.03);
+    }
+
+
+    .plans-heading {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #ffce00;
+      margin-top: 50px;
+      margin-bottom: 35px;
+    }
+
+    .plans {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .plan-card {
+      background: #5b0e07;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .plan-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .plan-title span {
+      color: #ffce00;
+    }
+      .badge {
+      background:linear-gradient(90deg, #ffce00, #ff6b00);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .divider {
+      border-bottom: 1px dashed #aa3e2e;
+      margin: 15px 0;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    .features li {
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: #7c5eff;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 0;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #ffa200, #ff5e00);
+      text-decoration: none;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+
+    .section {
+      padding: 30px 15px 60px;
+      text-align: center;
+    }
+
+    .section h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      line-height: 1.4;
+      color: #ffce00;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #a6240b, #611108);
+      border-radius: 20px;
+      margin: 25px auto;
+      padding: 15px;
+      max-width: 500px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+
+    .register-section {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 50px;
+    }
+
+    .register-section h1 {
+      font-size: 2rem;
+      color: #ffce00;
+      margin-bottom: 10px;
+    }
+
+    .register-section p {
+      font-size: 15px;
+      color: #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    .register-btn {
+      text-decoration: none;
+      background: linear-gradient(135deg, #ffae00, #ff6b00);
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .register-btn:hover {
+      background: linear-gradient(135deg, #ffb733, #ff8100);
+      transform: scale(1.05);
+    }
+
+    
+    footer {
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .content h1,
+      .section h1 {
+        font-size: 1.8rem;
+      }
+      .plans-heading {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="popup-container"></div>
+
+<style>
+  #popup-container {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    right: 20px;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .popup {
+    position: relative;
+    background: #4b0904;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 18px;
+    padding: 14px 20px 10px 26px;
+    margin-bottom: 12px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease;
+    max-width: 360px;
+    text-align: left;
+    pointer-events: auto;
+  }
+
+ 
+  .popup::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 8px;
+    bottom: 8px;
+    width: 8px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffb100, #ff6b00);
+  }
+
+  .popup.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .popup-main {
+    line-height: 1.5;
+  }
+
+  .popup-name {
+    font-weight: 700;
+    color: #ffce00; /* yellow “Ade” */
+  }
+
+  .popup-plan {
+    font-weight: 700;
+  }
+
+  .popup-time {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #d0c9ff; /* soft gray/blue time text */
+  }
+</style>
+
+<script>
+  const names = [
+    "Ade", "Blessing", "Tunde", "Amaka", "John", "Precious", "Emeka", "Chisom",
+    "David", "Ruth", "Kelechi", "Michael", "Esther", "Faith", "Sodiq",
+    "Chioma", "Kelvin", "Ngozi", "Uche", "Femi"
+  ];
+
+  const locations = [
+    "Lagos", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Asaba",
+    "Uyo", "Benin", "Jos", "Ilorin", "Warri", "Abeokuta"
+  ];
+
+  const actions = [
+    { textBefore: "just subscribed to", plan: "FORTUNEX STARTER – ₦7,500" },
+    { textBefore: "just subscribed to", plan: "FORTUNEX PLUS – ₦14,500" },
+    { textBefore: "just registered successfully", plan: "" },
+    { textBefore: "just activated their plan", plan: "" },
+    { textBefore: "just upgraded their account", plan: "" },
+    { textBefore: "just received a withdrawal", plan: "" },
+    { textBefore: "just claimed instant fortune", plan: "" },
+    { textBefore: "just joined FortuneX today!", plan: "" }
+  ];
+
+  function randomItem(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function showPopup() {
+    const container = document.getElementById("popup-container");
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+
+    const name = randomItem(names);
+    const location = randomItem(locations);
+    const action = randomItem(actions);
+    const minsAgo = Math.floor(Math.random() * 10) + 1;
+
+    popup.innerHTML = `
+      <div class="popup-main">
+        <span class="popup-name">${name}</span> from ${location}
+        ${action.textBefore}
+        ${action.plan ? `<span class="popup-plan">${action.plan}</span>` : ""}
+      </div>
+      <div class="popup-time">• ${minsAgo} mins ago</div>
+    `;
+
+    container.appendChild(popup);
+
+
+    setTimeout(() => popup.classList.add("show"), 100);
+
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+      setTimeout(() => popup.remove(), 500);
+    }, 3000);
+  }
+
+ 
+  setInterval(showPopup, 4000);
+  showPopup();
+</script>
+
+    
+
+  <div class="content reveal">
+    <h1>Automated Time Earnings</h1>
+    <p>
+      We offer daily earnings to everyone within and outside Nigeria. Earn ₦6,000 as a Nigerian and $6 as foreigners for every 30 minutes you spend on our website.
+    </p>
+  </div>
+
+  <div class="image-join reveal">
+    <img src="auto.jpg" alt="Automated Time Image">
+    <a href="Registration.html" class="btn-primary">Join Now</a>
+  </div>
+
+<div class="extra-image reveal" style="text-align:center; margin: 20px 0 40px;">
+  <img src="earning.jpg" alt="FortuneX" style="width:100%; max-width:450px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+</div>
+
+
+  <h1 class="plans-heading reveal">Choose Your<br>Preffered Plan </h1>
+
+  <div class="plans">
+    <div class="plan-card reveal">
+       <span class="badge">Most Recommended</span>
+      <div class="plan-title">FortuneX Plus : <span>₦14,500</span></div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Fortune Connect: ₦12,500</li>
+        <li>ROI (Return of ADS): 10%</li>
+        <li>Indirect Connect 1: ₦400</li>
+        <li>Indirect Connect 2: ₦100</li>
+        <li>Fortune Box: ₦2,000</li>
+        <li>Instant Fortune Claim: ₦30,000</li>
+        <li>Casino Games: $150</li>
+      </ul>
+      <a href="Registration.html" class="btn">Register FortuneX Plus</a>
+    </div>
+    <div class="extra-image reveal" style="text-align:center; margin: 20px 0 40px;">
+  <img src="earning1.jpg" alt="FortuneX" style="width:100%; max-width:450px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+</div>
+        <div class="plan-card reveal">
+      <div class="plan-title">FortuneX Starter : <span>₦7,500</span></div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Fortune Connect: ₦6,000</li>
+        <li>ROI (Return of ADS): 10%</li>
+        <li>Indirect Connect 1: ₦200</li>
+        <li>Indirect Connect 2: ₦100</li>
+        <li>Fortune Box: ₦1,000</li>
+        <li>Instant Fortune Claim: ₦15,000</li>
+      </ul>
+      <a href="Registration.html" class="btn">Register FortuneX Starter</a>
+    </div>
+  </div>
+
+
+  <section class="section">
+    <h1 class="reveal">FortuneX –<br>Automated Time Earning</h1>
+    <div class="card reveal"><img src="build.jpg" alt="FortuneX"></div>
+    <div class="card reveal"><img src="cac.jpg" alt="FortuneX"></div>
+    <div class="card reveal"><img src="market.jpg" alt="FortuneX"></div>
+    <div class="card reveal"><img src="earn.jpg" alt="FortuneX"></div>
+  </section>
+
+
+  <div class="register-section reveal">
+    <h1>Register and Get<br>Instant Access</h1>
+    <p>Limited Access – Register Now</p>
+    <a href="Registration.html" class="register-btn">Register Now</a>
+  </div>
+
+
+  <footer>
+    2025 FortuneX®. All Rights Reserved
+  </footer>
+
+  <script>
+    // Scroll Reveal Function
+    const reveals = document.querySelectorAll('.reveal');
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    reveals.forEach(reveal => appearOnScroll.observe(reveal));
+  </script>
+
+</body>
+</html>
