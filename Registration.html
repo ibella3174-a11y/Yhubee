@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FortuneX - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 100px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #a10000;
+    }
+
+    button {
+      background: linear-gradient(90deg, #ff3c00, #d30000);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .bottom-text {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .bottom-text a {
+      display: inline-block;
+      background: #f1f1f1;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: #007bff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .bottom-text a:hover {
+      background: #007bff;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .bottom-text a:active {
+      background: #0056b3;
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo">
+      <img src="fortune.png" alt="FortuneX Logo">
+    </div>
+
+    <form action="payment.html" method="get">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Choose a Username" required>
+      <input type="password" placeholder="Create Password" required>
+
+      <select required>
+        <option value="Country">Select Country</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Others">Other Countries</option>
+      </select>
+
+      <input type="text" placeholder="Epin" >
+      <button type="submit">Sign Up Now</button>
+    </form>
+
+    <div class="bottom-text">
+      Don't have a Epin? <a href="Payment.html">Click here to get</a>
+    </div>
+  </div>
+
+</body>
+</html>

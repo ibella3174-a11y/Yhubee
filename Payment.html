@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FortuneX - Payment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .lock {
+      text-align: center;
+      font-size: 30px;
+      color: red;
+      margin: 10px 0;
+    }
+
+    .notice {
+      background: #ffb400;
+      padding: 15px;
+      border-radius: 12px;
+      color: #000;
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .account-box {
+      background: #fff6f6;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .account-title {
+      font-weight: 700;
+      text-align: center;
+      color: #2b2b2b;
+    }
+
+    .bank {
+      text-align: center;
+      color: red;
+      font-weight: 600;
+    }
+
+    .acc-number {
+      text-align: center;
+      font-size: 22px;
+      color: #ff9800;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 5px 0;
+      position: relative;
+      display: inline-block;
+    }
+
+    .copy-btn {
+      cursor: pointer;
+      font-size: 18px;
+      color: #444;
+      margin-left: 8px;
+      transition: 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: #ff3c00;
+    }
+
+    .copied-msg {
+      display: none;
+      font-size: 13px;
+      color: green;
+      margin-left: 5px;
+      transition: 0.3s ease;
+    }
+
+    .acc-name {
+      text-align: center;
+      font-size: 13px;
+      color: #333;
+      margin-top: 3px;
+    }
+
+    .payment-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg, #ff3c00, #d30000);
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .payment-btn:hover {
+      transform: scale(1.03);
+    }
+
+    /* Modal Popup */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 350px;
+      width: 90%;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h3 {
+      color: red;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .modal-content h3 span {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    .modal-content p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #444;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+
+    .ack-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg, #ff3c00, #d30000);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .ack-btn:hover {
+      transform: scale(1.03);
+    }
+    .timer-box {
+      background: #1a0000;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .timer-title { font-size: 18px; font-weight: 700; color: #ffeb3b; }
+    .countdown { font-size: 40px; font-weight: 700; color: red; margin-top: 5px; }
+    .timer-note { font-size: 13px; margin-top: 5px; color: #e6e6e6; }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="lock"><i class="fa-solid fa-lock"></i></div>
+
+  <div class="notice">
+    To get your FortuneX Epin and activate your account, kindly make a transfer of exactly ₦7,500 or ₦14,500 to any of the accounts below.
+  </div>
+
+
+<div class="timer-box">
+    <div class="timer-title">Secure Payment Portal<br>Complete payment within:</div>
+    <div id="countdown" class="countdown">10:00</div>
+    <div class="timer-note">Complete your transaction safely. Your account will be activated instantly after confirmation.</div>
+  </div>
+  <div class="account-box">
+    <div class="account-title">FORTUNEX ACCOUNT 1</div>
+    <div class="bank">Opay (Paycom)</div>
+    <div class="acc-number">
+      <span id="acc1">9135905140</span>
+      <i class="fa-solid fa-copy copy-btn" onclick="copyAcc('acc1', this)"></i>
+      <span class="copied-msg">Copied!</span>
+    </div>
+    <div class="acc-name">EMMANUEL CHIKAMSO EJEH</div>
+  </div>
+
+  <div class="account-box">
+    <div class="account-title">FORTUNEX ACCOUNT 2</div>
+    <div class="bank">Moniepoint MFB</div>
+    <div class="acc-number">
+      <span id="acc2">5820012555</span>
+      <i class="fa-solid fa-copy copy-btn" onclick="copyAcc('acc2', this)"></i>
+      <span class="copied-msg">Copied!</span>
+    </div>
+    <div class="acc-name">  EMMANUEL CHIKAMSO EJEH(NOTE: DON'T PAY WITH OPAY, YOU CAN PAY WITH PALMPAY OR ANY OTHER BANK)</div>
+  </div>
+
+
+  <a href="https://t.me/m/w-y9E7-pZmRk" class="payment-btn">I Have Made My Payment</a>
+
+  <!-- Popup Modal -->
+  <div class="modal" id="paymentModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h3><span>⚠️</span> PAYMENT WARNING:</h3>
+      <p>
+        AVOID USING OPAY BANK FOR YOUR PAYMENT.<br><br>
+        This can lead to delays in verifying your payment and also affect your withdrawal. 
+        (FortuneX accepts only Palmpay, Moniepoint, POS and all other banks except OPAY).
+      </p>
+      <button class="ack-btn" id="acknowledgeBtn">Acknowledged</button>
+    </div>
+  </div>
+
+  <script>
+    // Show warning popup on load
+    window.onload = function() {
+      document.getElementById('paymentModal').classList.add('active');
+    };
+
+    document.getElementById('closeModal').onclick = function() {
+      document.getElementById('paymentModal').classList.remove('active');
+    };
+
+    document.getElementById('acknowledgeBtn').onclick = function() {
+      document.getElementById('paymentModal').classList.remove('active');
+    };
+
+    // Copy to clipboard function
+    function copyAcc(id, element) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+      const msg = element.nextElementSibling;
+      msg.style.display = "inline";
+      element.style.color = "#00b300";
+      setTimeout(() => {
+        msg.style.display = "none";
+        element.style.color = "#444";
+      }, 1500);
+    }
+    let timeLeft = 10 * 60; // seconds
+
+  function formatTime(sec) {
+    let m = Math.floor(sec / 60);
+    let s = sec % 60;
+    return `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+  }
+
+  const countdownEl = document.getElementById("countdown");
+  countdownEl.textContent = formatTime(timeLeft);
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    countdownEl.textContent = formatTime(timeLeft);
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      countdownEl.textContent = "00:00";
+    }
+  }, 1000);
+  </script>
+
+</body>
+</html>
